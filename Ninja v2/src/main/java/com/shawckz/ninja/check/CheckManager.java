@@ -30,6 +30,15 @@ public class CheckManager implements Listener {
         return instance;
     }
 
+    public Check getCheck(String name){
+        for(Check c : checks){
+            if(c.getName().equalsIgnoreCase(name)){
+                return c;
+            }
+        }
+        return null;
+    }
+
     public void registerListeners(Core core){
         for(Check c : checks){
             c.registerListeners(core);

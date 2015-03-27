@@ -1,5 +1,7 @@
 package com.shawckz.ninja.check;
 
+import com.shawckz.ninja.Ninja;
+import com.shawckz.ninja.player.NinjaPlayer;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -20,5 +22,9 @@ public abstract class Check {
     public abstract float getRaiseLevel();
 
     public abstract void registerListeners(Plugin plugin);
+
+    public void handleCheckFail(NinjaPlayer player) {
+        Ninja.callCheckFailedEvent(player, this);
+    }
 
 }
