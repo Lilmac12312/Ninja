@@ -47,7 +47,7 @@ public class Core extends JavaPlugin {
 
     @Override
     public void onDisable(){
-        log("You can't shut us down! YOU SHIT HAS BEEN JACKED THX CRUSADER @ PINGD3MSQUAD");
+        log("You can't shut us down! YO SHIT HAS BEEN JACKED THX CRUSADER @ PINGD3MSQUAD");
     }
 
     public static Plugin getPlugin() {
