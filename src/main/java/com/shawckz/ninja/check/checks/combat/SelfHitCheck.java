@@ -38,7 +38,9 @@ public class SelfHitCheck extends Check implements Listener {
 
             if(d.equals(p)){
 
-                handleCheckFail(PlayerManager.get(d.getName()));
+                if(handleCheckFail(PlayerManager.get(d.getName()))){
+                    e.setCancelled(true);
+                }
 
             }
 

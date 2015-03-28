@@ -10,9 +10,15 @@ import org.bukkit.plugin.Plugin;
 public abstract class Check {
 
     private String name;
+    private float maxVL;
 
     public Check(String name){
         this.name = name;
+        this.maxVL = 7F;
+    }
+
+    public float getMaxVL() {
+        return maxVL;
     }
 
     public String getName() {
@@ -23,8 +29,8 @@ public abstract class Check {
 
     public abstract void registerListeners(Plugin plugin);
 
-    public void handleCheckFail(NinjaPlayer player) {
-        Ninja.callCheckFailedEvent(player, this);
+    public boolean handleCheckFail(NinjaPlayer player) {
+        return Ninja.callCheckFailedEvent(player, this, player.getCheckData());
     }
 
 }

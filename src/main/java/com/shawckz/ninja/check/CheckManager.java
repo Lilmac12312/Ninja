@@ -19,6 +19,10 @@ public class CheckManager implements Listener {
         //TODO: Add checks to list
     }
 
+    public List<Check> getChecks() {
+        return checks;
+    }
+
     public static CheckManager get() {
         if (instance == null) {
             synchronized (CheckManager.class) {
