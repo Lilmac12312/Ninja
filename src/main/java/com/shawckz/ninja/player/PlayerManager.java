@@ -22,4 +22,10 @@ public class PlayerManager {
         return players.containsKey(name);
     }
 
+    public static void remove(String name){
+        if(contains(name)){
+            players.remove(name);
+        }
+    }
+
 }

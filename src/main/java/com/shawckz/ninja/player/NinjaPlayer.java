@@ -29,7 +29,7 @@ public class NinjaPlayer {
             checkVl.put(c,0F);
         }
 
-        this.alertsEnabled = false;
+        this.alertsEnabled = true;
 
     }
 

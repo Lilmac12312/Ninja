@@ -1,7 +1,11 @@
 package com.shawckz.ninja;
 
 import com.shawckz.ninja.check.CheckManager;
+import com.shawckz.ninja.player.CacheHandler;
+import com.shawckz.ninja.player.NinjaPlayer;
+import com.shawckz.ninja.player.PlayerManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,6 +27,14 @@ public class Core extends JavaPlugin {
         CheckManager.get();
 
         CheckManager.get().registerListeners(this);
+
+        Ninja.tick();
+
+        getServer().getPluginManager().registerEvents(new CacheHandler(),this);
+
+        for(Player pl : Bukkit.getOnlinePlayers()){
+            PlayerManager.put(new NinjaPlayer(pl));
+        }
 
         Runtime.getRuntime().addShutdownHook(new Thread(){
             @Override

@@ -5,7 +5,11 @@ import com.shawckz.ninja.check.CheckCallbackResult;
 import com.shawckz.ninja.check.CheckData;
 import com.shawckz.ninja.check.CheckFail;
 import com.shawckz.ninja.player.NinjaPlayer;
+import com.shawckz.ninja.player.PlayerManager;
 import com.shawckz.ninja.type.BanMethod;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 
@@ -23,14 +27,29 @@ public class Ninja {
     public static BanMethod banMethod = BanMethod.CONSOLE_COMMAND;
 
     public static boolean callCheckFailedEvent(NinjaPlayer player,Check check,CheckData data){
-        check.handleCheckFail(player);
-
         HashSet<CheckCallbackResult> result = new CheckFail(player,check,data).call().checkFailed();
 
-        //TODO: Do something with the results
-
         return result.contains(CheckCallbackResult.CANCELLED);
+    }
 
+    public static void tick(){
+        new BukkitRunnable(){
+
+            @Override
+            public void run() {
+
+                for(Player pl : Bukkit.getOnlinePlayers()){
+                    NinjaPlayer p = PlayerManager.get(pl.getName());
+
+                    p.getCheckData().setBlocksPerSecond(0);
+                    p.getCheckData().setHps(0);
+                    p.getCheckData().setLastCps(p.getCheckData().getCps());
+                    p.getCheckData().setCps(0);
+                }
+
+            }
+
+        }.runTaskTimer(Core.getPlugin(),20L,20L);
     }
 
 

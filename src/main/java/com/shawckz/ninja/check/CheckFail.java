@@ -39,20 +39,21 @@ public class CheckFail {
 
                 HashSet<CheckCallbackResult> results = new HashSet<>();
 
-                if(!p.getBukkitPlayer().hasPermission("ninja.checks."+check.getName().toLowerCase()+".bypass")){
+               // if(!p.getBukkitPlayer().hasPermission("ninja.checks."+check.getName().toLowerCase()+".bypass")){
 
                     p.addVL(check,check.getRaiseLevel());
 
-                    if(p.getCheckVL(check) > check.getMaxVL()){
+                    if(p.getCheckVL(check) >= check.getMaxVL()){
                         Alert.send(p,check);
                         results.add(CheckCallbackResult.ALERTED);
+                        results.add(CheckCallbackResult.CANCELLED);
                     }
 
-                }
-                else{//They can bypass this: ignore it
-                    results.add(CheckCallbackResult.IGNORED);
-                    return results;
-                }
+             //   }
+             //   else{//They can bypass this: ignore it
+             //       results.add(CheckCallbackResult.IGNORED);
+             //       return results;
+             //   }
 
                 if(results.isEmpty()){
                     results.add(CheckCallbackResult.IGNORED);

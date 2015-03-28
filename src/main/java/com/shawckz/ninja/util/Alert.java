@@ -13,8 +13,10 @@ public class Alert {
 
     public static void send(NinjaPlayer p, Check check){
         for(Player pl : Bukkit.getOnlinePlayers()){
-            if(pl.hasPermission(NinjaPerm.ALERTS_VIEW.getPerm()) && p.isAlertsEnabled()){
-                pl.sendMessage(Ninja.NINJA_PREFIX+"§f"+p.getBukkitPlayer().getName()+" §7("+p.getVL()+"xVL) §7failed §c"+check.getName()+" §7("+p.getCheckVL(check)+"VL)");
+            if(p.isAlertsEnabled()){
+                if((p.getVL() % 10 == 0 || p.getVL() <= 10)){
+                    pl.sendMessage(Ninja.NINJA_PREFIX+"§f"+p.getBukkitPlayer().getName()+" §7("+p.getVL()+"xVL) §7failed §c"+check.getName()+" §7("+p.getCheckVL(check)+"VL)");
+                }
             }
         }
     }

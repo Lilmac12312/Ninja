@@ -1,6 +1,12 @@
 package com.shawckz.ninja.check;
 
 import com.shawckz.ninja.Core;
+import com.shawckz.ninja.check.checks.combat.AutoClickCheck;
+import com.shawckz.ninja.check.checks.combat.FastBowCheck;
+import com.shawckz.ninja.check.checks.combat.RegenCheck;
+import com.shawckz.ninja.check.checks.combat.SelfHitCheck;
+import com.shawckz.ninja.check.checks.movement.FlyCheck;
+import com.shawckz.ninja.check.checks.movement.SpeedCheck;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
@@ -16,7 +22,13 @@ public class CheckManager implements Listener {
 
     protected CheckManager(){
         checks = new ArrayList<>();
-        //TODO: Add checks to list
+
+        checks.add(new SelfHitCheck());
+        checks.add(new FlyCheck());
+        checks.add(new SpeedCheck());
+        checks.add(new RegenCheck());
+        checks.add(new AutoClickCheck());
+        checks.add(new FastBowCheck());
     }
 
     public List<Check> getChecks() {

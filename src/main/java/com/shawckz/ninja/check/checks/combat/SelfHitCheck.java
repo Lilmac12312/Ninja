@@ -20,7 +20,7 @@ public class SelfHitCheck extends Check implements Listener {
 
     @Override
     public float getRaiseLevel() {
-        return 10F;
+        return 20F;
     }
 
     @Override
@@ -28,6 +28,10 @@ public class SelfHitCheck extends Check implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this,plugin);
     }
 
+    @Override
+    public float getMaxVL() {
+        return 20;
+    }
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e){
